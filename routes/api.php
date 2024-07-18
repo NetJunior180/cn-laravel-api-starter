@@ -30,10 +30,11 @@ Route::middleware(['jwt.verify'])->group(function () {
     Route::get('/me', [AuthController::class, 'me']);
     Route::post('logout', [AuthController::class, 'logout']);
     Route::post('refresh', [AuthController::class, 'refresh']);
-});
 
-Route::apiResource('/products',ProductController::class);
+    Route::apiResource('/products',ProductController::class);
 
-Route::group(['prefix' => 'products'],function(){
-    Route::apiResource('/{product}/reviews',ReviewController::class);
+    Route::group(['prefix' => 'products'],function(){
+        Route::apiResource('/{product}/reviews',ReviewController::class);
+    });
+
 });
